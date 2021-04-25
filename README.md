@@ -14,3 +14,9 @@ web browser:
 run mysql client:
 `docker-compose exec db mysql -u root -p` 
 
+bash:
+    check image:
+        `docker ps`
+    and run:
+        `docker exec -it docker-image-name bash`
+
