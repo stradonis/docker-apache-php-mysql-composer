@@ -1,4 +1,4 @@
-docker example with apache, php, mysql and phpMyAdmin
+docker example with apache, php, mysql, phpMyAdmin and composer
 
 run docker-compose:
 `docker-compose up --build`
