@@ -6,7 +6,7 @@ run docker-compose:
 phpMyAdmin:
 `http://localhost:8000`
 
-put your site in catalog src
+put your site in catalog `src`
 
 web browser:
 `http://localhost:8001`
@@ -19,4 +19,16 @@ bash:
         `docker ps`
     and run:
         `docker exec -it docker-image-name bash`
+
+local domain:
+    if you want change your local domain see line:
+        `extra_hosts:
+        - "example-domain.local:172.25.0.2"`
+    in `docker-compose.yml` file and apache configuration:
+    `apache2/example-domain.local.conf`
+    you must add domain in your local file /etc/hosts:
+    `172.25.0.2     example-domain.local`
+    
+
+
 

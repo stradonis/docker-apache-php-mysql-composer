@@ -11,4 +11,20 @@ RUN apt-get update \
     && curl -sL https://deb.nodesource.com/setup_14.x  | bash - \
     && apt-get -y install nodejs
 
+#prepare vhosts
+CMD echo "ServerName localhost" >> /etc/apache2/apache2.conf
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+
+COPY apache2/apache_default /etc/apache2/sites-available/000-default.conf
+COPY apache2/example-domain.local.conf /etc/apache2/sites-available/example-domain.local.conf
+
+RUN a2ensite example-domain.local.conf
+
+#enable apache modules
+RUN a2enmod rewrite
+RUN service apache2 restart
+
+EXPOSE 80
+
+
 

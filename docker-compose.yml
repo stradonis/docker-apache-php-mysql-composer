@@ -2,14 +2,17 @@ version: "3.1"
 services:
     app:
         build: .
+        networks:
+            billing_network:
+                ipv4_address: 172.25.0.2
         ports:
             - "8001:80"
         volumes:
             - ./src:/var/www/html/
         links:
             - db
-        networks:
-            - default
+        extra_hosts:
+            - "example-domain.local:172.25.0.2"
     db:
         image: mysql:8.0
         ports:
@@ -21,7 +24,8 @@ services:
             MYSQL_PASSWORD: password
             MYSQL_ROOT_PASSWORD: password
         networks:
-            - default
+            billing_network:
+                    ipv4_address: 172.25.0.4
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         links:
@@ -32,3 +36,11 @@ services:
             MYSQL_USER: user
             MYSQL_PASSWORD: password
             MYSQL_ROOT_PASSWORD: password
+networks:
+    billing_network:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.25.0.1/24
+
