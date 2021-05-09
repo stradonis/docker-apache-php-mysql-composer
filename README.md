@@ -27,7 +27,7 @@ local domain:
     in `docker-compose.yml` file and apache configuration:
     `apache2/example-domain.local.conf`
     you must add domain in your local file /etc/hosts:
-    `172.25.0.2     example-domain.local`
+    `172.35.0.2     example-domain.local`
     
 
 
